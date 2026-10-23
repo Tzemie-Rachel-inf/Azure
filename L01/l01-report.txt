@@ -1,0 +1,13 @@
+L01 report
+SUFFIX: rayr01
+REGION: polandcentral
+2026-10-23T09:17:26Z
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+azure-cli:
+2.91.0
+Subscription        State    User
+------------------  -------  ------------------
+Azure for Students  Enabled  01200750@pw.edu.pl
+rg-lab01 exists:
+false
+
