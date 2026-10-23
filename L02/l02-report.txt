@@ -1,0 +1,46 @@
+L02 report
+REGION: polandcentral
+2026-10-23T10:02:30Z
+--- resources in rg-lab02
+Name
+--------------------------------------------------
+vnet-lab02
+nsg-lab02
+pip-lab02
+vm-lab02VMNic
+vm-lab02
+vm-lab02_OsDisk_1_fe2c002f73584b94ab88866c3f6d563e
+--- VM
+Size               Power       PrivateIp    PublicIp
+-----------------  ----------  -----------  -------------
+Standard_B2ats_v2  VM running  10.20.1.4    74.248.113.90
+--- NSG rules (nsg-lab02)
+Name             Priority    Access    Port    Source
+---------------  ----------  --------  ------  ---------------
+allow-ssh-my-ip  100         Allow     22      148.81.247.6/32
+allow-http-8000  110         Allow     8000    Internet
+--- /health (via public IP)
+{"status":"healthy","environment":"vm","instance":"vm-lab02"}
+--- NSG experiments (port 8000)
+no rule for 8000         -> timeout (curl 28)
+allow 110                -> healthy
+deny 105 + allow 110     -> timeout
+allow 110 + deny 120     -> healthy
+only allow 110           -> healthy
+service stopped          -> refused (curl 7, 0 ms)
+--- stop / deallocate / start
+stopped -> deallocated -> running; public IP unchanged (74.248.113.90)
+app came back via systemd; note "Notatka przed restartem" lost (/tmp/cloudnotes)
+--- monthly cost (Azure Retail Prices, polandcentral, 730 h)
+VM Standard_B2ats_v2   0.0108 USD/h  -> 7.88 USD/month
+Public IPv4 Static     0.005 USD/h   -> 3.65 USD/month
+Disk StandardSSD E4    2.40 USD/month
+Running/Stopped: VM + IP + disk = 13.93 USD/month
+Deallocated:     IP + disk      =  6.05 USD/month
+--- notes
+Outbound TCP 22 and 8000 are blocked on the local (university) network,
+so SSH and the Internet-side curl tests were done with
+`az vm run-command invoke` from the VM against its own public IP
+(traffic goes through the Azure edge and NSG with source tag Internet).
+--- rg-lab02 exists after cleanup
+false
