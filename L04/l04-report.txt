@@ -1,0 +1,41 @@
+L04 report
+2026-11-06T11:47:39Z
+--- storage account
+{
+  "blob": "https://stcloudnotesrayr01.blob.core.windows.net/",
+  "httpsOnly": true,
+  "kind": "StorageV2",
+  "publicAccess": false,
+  "sku": "Standard_LRS",
+  "tier": "Hot",
+  "tls": "TLS1_2"
+}
+--- containers
+Name
+-----------
+attachments
+lab04-demo
+reports
+--- blobs: attachments
+Name                   Size
+---------------------  ------
+1dacdd98-obrazek.png   70
+79a0c4ba-l04-plik.txt  42
+--- blobs: reports
+Name        Size
+----------  ------
+note-1.txt  263
+--- app settings (names only)
+APP_ENVIRONMENT
+SCM_DO_BUILD_DURING_DEPLOYMENT
+WEBSITE_HTTPLOGGING_RETENTION_DAYS
+STORAGE_CONNECTION_STRING
+--- health
+{"backends":{"database":"sqlite","files":"blob","reports":"sync","secrets":"environment","telemetry":"off"},"checks":{"database":"ok","files":"ok","queue":"ok","reports":"ok"},"environment":"app-service","instance":"04920de16080","requests_handled":9,"started_at":"2026-11-06 10:46:45 UTC","status":"healthy"}
+
+--- anonymous request to attachment blob
+409
+--- attachment through application
+200
+--- lab04-demo exists after cleanup
+false
