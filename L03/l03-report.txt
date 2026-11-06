@@ -1,0 +1,28 @@
+L03 report
+2026-11-06T11:07:00Z
+--- plan
+Sku    Tier    Linux    Region
+-----  ------  -------  -------------
+F1     Free    True     Spain Central
+--- web app
+State    Host                                     HttpsOnly    Runtime
+-------  ---------------------------------------  -----------  -----------
+Running  app-cloudnotes-rayr01.azurewebsites.net  True         PYTHON|3.12
+--- resources
+Name
+----------------------
+plan-cloudnotes-rayr01
+app-cloudnotes-rayr01
+--- app settings
+Name                                Value
+----------------------------------  -----------
+APP_ENVIRONMENT                     app-service
+SCM_DO_BUILD_DURING_DEPLOYMENT      true
+WEBSITE_HTTPLOGGING_RETENTION_DAYS  3
+--- health over https
+{"backends":{"database":"sqlite","files":"local","reports":"sync","secrets":"environment","telemetry":"off"},"checks":{"database":"ok","files":"ok","queue":"ok","reports":"ok"},"environment":"app-service","instance":"04920de16080","requests_handled":4,"started_at":"2026-11-06 10:06:36 UTC","status":"healthy"}
+
+--- http request
+301 https://app-cloudnotes-rayr01.azurewebsites.net/health
+--- B1 monthly price
+B1=13.14 USD
